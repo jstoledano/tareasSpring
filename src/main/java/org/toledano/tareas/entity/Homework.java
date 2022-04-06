@@ -1,4 +1,4 @@
-package org.toledano.tareas.Entidad;
+package org.toledano.tareas.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Column;
@@ -7,11 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tareas")
-public class Tarea {
+@Table(name = "homework")
+public class Homework {
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
 	@Column(name = "materia", nullable = false, length = 4)
 	private String materia;
@@ -25,21 +25,29 @@ public class Tarea {
 	@Column(name = "descripcion", nullable = false, length = 150)
 	private String descripcion;
 
-	public Tarea() {
+	public Homework() {
 	}
 
-	public Tarea(String materia, String unidad, String actividad, String descripcion) {
+	public Homework(Long id, String materia, String unidad, String actividad, String descripcion) {
+		this.id = id;
 		this.materia = materia;
 		this.unidad = unidad;
 		this.actividad = actividad;
 		this.descripcion = descripcion;
 	}
 
-	public int getId() {
+	public Homework(String materia, String unidad, String actividad, String descripcion) {
+		this.materia = materia;
+		this.unidad = unidad;
+		this.actividad = actividad;
+		this.descripcion = descripcion;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -77,6 +85,6 @@ public class Tarea {
 
 	@Override
 	public String toString() {
-		return "[" + materia + ":" + unidad + ":" + actividad + "] " + descripcion;
+		return "[" + materia + ":" + unidad + ":" + actividad + "]";
 	}
 }
